@@ -1,0 +1,9 @@
+spring:
+  profiles:
+    active: dev
+  message:
+    encoding: UTF-8
+
+---
+spring.profiles: dev
+spring.profiles.include: mall-user-dev

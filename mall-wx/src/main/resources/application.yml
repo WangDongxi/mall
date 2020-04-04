@@ -1,2 +1,15 @@
 server:
   port: 8081
+
+spring:
+  profiles:
+    active: dev
+  message:
+    encoding: UTF-8
+
+logging:
+  config: classpath:logging-config.xml
+
+---
+spring.profiles: dev
+spring.profiles.include: mall-core-dev

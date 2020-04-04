@@ -1,4 +1,4 @@
-package com.xydq.mall.utils.Exception;
+package com.xydq.mall.utils.exception;
 
 /**
  * @author wanghuaidong

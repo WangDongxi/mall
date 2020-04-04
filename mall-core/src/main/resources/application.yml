@@ -6,4 +6,4 @@ spring:
 
 ---
 spring.profiles: dev
-spring.profiles.include: mall-user-dev
+spring.profiles.include: mall-core-dev

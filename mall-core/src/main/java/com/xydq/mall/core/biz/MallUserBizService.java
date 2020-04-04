@@ -1,10 +1,11 @@
 package com.xydq.mall.core.biz;
 
+import com.xydq.mall.core.dto.LoginResult;
 import com.xydq.mall.core.redis.UserLoginCache;
 import com.xydq.mall.user.dao.domain.MallUser;
 import com.xydq.mall.user.service.MallUserService;
 import com.xydq.mall.utils.CharUtil;
-import com.xydq.mall.utils.Exception.MallException;
+import com.xydq.mall.utils.exception.MallException;
 import com.xydq.mall.utils.encrypt.EncryptUtil;
 import com.xydq.mall.utils.validate.MobileValidate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +24,7 @@ public class MallUserBizService {
     @Autowired
     private MallUserService mallUserService;
 
-    public Integer register(String mobile, String password) {
+    public LoginResult register(String mobile, String password) {
         if (!MobileValidate.isPhone(mobile)) {
             throw new MallException("请输入正确的手机号码");
         }
@@ -32,10 +33,14 @@ public class MallUserBizService {
             throw new MallException("手机号码已存在，请使用其他手机号码");
         }
         String encryptPassword = EncryptUtil.encryptPassword(password);
-        return mallUserService.createUser(mobile, encryptPassword);
+        Integer userId = mallUserService.createUser(mobile, encryptPassword);
+        String token = CharUtil.getRandomString(TOKEN_LENGTH);
+        userLoginCache.setCache(token, mallUser.getId());
+        return LoginResult.builder().token(token)
+                .lastLoginTime(mallUser.getLastLoginTime()).username(mallUser.getUsername()).build();
     }
 
-    public String login(String mobile, String password) {
+    public LoginResult login(String mobile, String password) {
         if (!MobileValidate.isPhone(mobile)) {
             throw new MallException("请输入正确的手机号码");
         }
@@ -47,7 +52,8 @@ public class MallUserBizService {
             // 生成token
             String token = CharUtil.getRandomString(TOKEN_LENGTH);
             userLoginCache.setCache(token, mallUser.getId());
-            return token;
+            return LoginResult.builder().token(token)
+                    .lastLoginTime(mallUser.getLastLoginTime()).username(mallUser.getUsername()).build();
         } else {
             throw new MallException("手机或密码错误，请重试");
         }

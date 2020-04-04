@@ -36,4 +36,8 @@ public class MallUserService {
         return CollectionUtils.firstElement(mallUserMapper.selectByExample(mallUserExample));
     }
 
+    public MallUser selectById(Integer userId) {
+        return mallUserMapper.selectByPrimaryKey(userId);
+    }
+
 }

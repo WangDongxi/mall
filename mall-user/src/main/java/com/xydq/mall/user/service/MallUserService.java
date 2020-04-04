@@ -40,4 +40,10 @@ public class MallUserService {
         return mallUserMapper.selectByPrimaryKey(userId);
     }
 
+    public void updateLastLoginTime(Integer userId) {
+        MallUser mallUser = new MallUser();
+        mallUser.setId(userId);
+        mallUser.setLastLoginTime(new Date());
+        mallUserMapper.updateByPrimaryKeySelective(mallUser);
+    }
 }

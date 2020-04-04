@@ -1,5 +1,8 @@
 package com.xydq.mall.wx.controller;
 
+import com.xydq.mall.core.biz.MallIndexBizService;
+import com.xydq.mall.core.dto.IndexDTO;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -8,12 +11,15 @@ import org.springframework.web.bind.annotation.RestController;
  * @date 2020/2/27
  */
 @RestController
-@RequestMapping("/wx/index")
+@RequestMapping("/index")
 public class WxIndexController {
 
-    @RequestMapping("/")
-    public String index() {
-        return "这是一个啥?";
+    @Autowired
+    private MallIndexBizService mallIndexBizService;
+
+    @RequestMapping("")
+    public IndexDTO index() {
+        return mallIndexBizService.getIndexDTO();
     }
 
 }

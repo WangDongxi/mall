@@ -7,10 +7,10 @@
         <artifactId>mall</artifactId>
         <version>1.0.0-SNAPSHOT</version>
     </parent>
-    <artifactId>mall-user</artifactId>
+    <artifactId>mall-ad</artifactId>
     <version>1.0.0-SNAPSHOT</version>
-    <name>mall-user</name>
-    <description>商城用户模块</description>
+    <name>mall-ad</name>
+    <description>商城推广模块</description>
 
     <properties>
         <java.version>1.8</java.version>
@@ -18,8 +18,8 @@
 
     <dependencies>
         <dependency>
-            <groupId>org.mybatis.spring.boot</groupId>
-            <artifactId>mybatis-spring-boot-starter</artifactId>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
         </dependency>
 
         <dependency>
@@ -71,12 +71,11 @@
                     </dependency>
                     <dependency>
                         <groupId>com.xydq</groupId>
-                        <artifactId>mall-user</artifactId>
+                        <artifactId>mall-ad</artifactId>
                         <version>1.0.0-SNAPSHOT</version>
                     </dependency>
                 </dependencies>
             </plugin>
         </plugins>
     </build>
-
 </project>

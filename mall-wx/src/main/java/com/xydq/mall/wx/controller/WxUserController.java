@@ -1,7 +1,7 @@
 package com.xydq.mall.wx.controller;
 
 import com.xydq.mall.core.biz.MallUserBizService;
-import com.xydq.mall.core.dto.LoginResult;
+import com.xydq.mall.core.dto.LoginDTO;
 import com.xydq.mall.utils.model.MallResult;
 import com.xydq.mall.wx.model.param.LoginParam;
 import com.xydq.mall.wx.model.param.RegisterParam;
@@ -24,14 +24,14 @@ public class WxUserController {
     private MallUserBizService mallUserBizService;
 
     @PostMapping("/register")
-    public MallResult<LoginResult> register(@RequestBody @Validated RegisterParam registerParam) {
-        LoginResult result = mallUserBizService.register(registerParam.getMobile(), registerParam.getPassword());
+    public MallResult<LoginDTO> register(@RequestBody @Validated RegisterParam registerParam) {
+        LoginDTO result = mallUserBizService.register(registerParam.getMobile(), registerParam.getPassword());
         return MallResult.success(result);
     }
 
     @PostMapping("/login")
-    public MallResult<LoginResult> login(@RequestBody @Validated LoginParam loginParam) {
-        LoginResult result = mallUserBizService.login(loginParam.getMobile(), loginParam.getPassword());
+    public MallResult<LoginDTO> login(@RequestBody @Validated LoginParam loginParam) {
+        LoginDTO result = mallUserBizService.login(loginParam.getMobile(), loginParam.getPassword());
         return MallResult.success(result);
     }
 }

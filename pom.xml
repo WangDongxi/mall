@@ -18,6 +18,7 @@
         <module>mall-goods</module>
         <module>mall-user</module>
         <module>mall-wx</module>
+        <module>mall-ad</module>
         <module>mall-admin</module>
         <module>mall-core</module>
         <module>mall-utils</module>
@@ -38,6 +39,11 @@
             <dependency>
                 <groupId>com.xydq</groupId>
                 <artifactId>mall-user</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.xydq</groupId>
+                <artifactId>mall-ad</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
